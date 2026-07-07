@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leave Policy FAQs</title>
+  <style>
+    :root{--navy:#0b2858;--blue:#0b5ee8;--muted:#5b6f8d;--line:#dfe7f2;--soft:#f6f9fe;--white:#fff}
+    *{box-sizing:border-box}body{margin:0;color:var(--navy);background:#f8fbff;font-family:"Plus Jakarta Sans","Segoe UI",Arial,sans-serif}
+    .page{max-width:1180px;margin:auto;padding:24px}.hero{display:flex;align-items:center;gap:18px;padding:24px 26px;border:1px solid #d8e5f5;border-radius:15px;background:linear-gradient(120deg,#f7fbff,#edf5ff)}
+    .hero-icon{display:grid;width:58px;height:58px;flex:0 0 58px;place-items:center;border-radius:15px;color:#fff;background:linear-gradient(135deg,#1768f2,#0747c9);box-shadow:0 9px 20px #0b5ee82b}
+    .hero-icon svg{width:30px;fill:none;stroke:currentColor;stroke-width:2}.hero h1{margin:0;font-size:26px}.hero p{margin:6px 0 0;color:var(--muted);line-height:1.5}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:18px 0}.search{display:flex;align-items:center;gap:10px;flex:1;max-width:540px;height:46px;padding:0 15px;border:1px solid #d4dfed;border-radius:9px;background:#fff}
+    .search svg{width:21px;fill:none;stroke:#536b8c;stroke-width:2}.search input{width:100%;border:0;outline:0;font:inherit;color:var(--navy)}.count{color:var(--muted);font-size:14px;font-weight:600}
+    .faq-section{margin:14px 0;border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden;box-shadow:0 2px 8px #24437d0a}.section-title{display:flex;align-items:center;gap:11px;margin:0;padding:16px 20px;color:#123866;font-size:17px;background:#f2f7fd;border-bottom:1px solid var(--line)}
+    .section-title span{display:grid;min-width:30px;height:28px;padding:0 7px;place-items:center;border-radius:8px;color:#fff;font-size:12px;background:#0b5ee8}.faq{border-bottom:1px solid #e9eef6}.faq:last-child{border-bottom:0}
+    .question{display:flex;width:100%;align-items:center;justify-content:space-between;gap:20px;padding:16px 20px;color:var(--navy);font:inherit;font-size:15px;font-weight:500;text-align:left;cursor:pointer;border:0;background:#fff}.question:hover{background:#fbfdff}.question-copy{display:flex;align-items:flex-start;gap:9px}.question-number{min-width:24px;color:#0b5ee8;font-weight:500}.question svg{width:18px;flex:0 0 18px;fill:none;stroke:#6680a1;stroke-width:2;transition:.2s}.faq.open .question svg{transform:rotate(180deg)}
+    .answer{display:none;padding:0 54px 18px 20px;color:#475d7d;font-size:14.5px;line-height:1.65}.faq.open .answer{display:block}.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed #cbd9ea;border-radius:12px;background:#fff}
+    @media(max-width:650px){.page{padding:14px}.hero{align-items:flex-start;padding:19px}.hero h1{font-size:22px}.toolbar{align-items:stretch;flex-direction:column}.search{max-width:none}.question{padding:15px;font-size:14px}.answer{padding:0 42px 16px 15px}.section-title{padding:14px 15px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero"><div class="hero-icon"><svg viewBox="0 0 24 24"><path d="M5 5h14v11H8l-3 3z"/><path d="M9 9h6M9 12h4"/></svg></div><div><h1>Leave Policy FAQs</h1><p>Quick answers to common questions about faculty leave eligibility, approval and usage.</p></div></header>
+    <div class="toolbar"><label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Search questions or answers..." aria-label="Search FAQs"></label><span class="count" id="count"></span></div>
+    <div id="content"></div>
+  </main>
+  <script>
+    const sections=[
+      ["General Leave Policy",[
+        ["Can an employee claim leave as a matter of right?","No. Leave cannot be claimed as a matter of right. It is subject to approval by the competent authority."],
+        ["Who approves leave applications?","Leave applications must be recommended by the Head of the Department (HoD) and approved by the designated sanctioning authority."],
+        ["Can leave be taken during the notice period after resignation?","Only Casual Leave (CL) and Earned Leave (EL) can be availed during the notice period, and the notice period will be extended accordingly."],
+        ["Can leave be sanctioned beyond the retirement date?","No. Leave cannot be granted beyond the employee's retirement date."]]],
+      ["Casual Leave (CL)",[
+        ["How many Casual Leaves are available in a year?","A confirmed employee is entitled to 13 Casual Leaves per calendar year."],
+        ["How are Casual Leaves credited?","Six (6) CLs are available from January to June and seven (7) CLs from July to December."],
+        ["What is the minimum and maximum duration of Casual Leave?","The minimum duration is half a day and the maximum is three consecutive days."],
+        ["Can Casual Leave be combined with Earned Leave or Medical Leave?","No. Casual Leave cannot normally be combined with Earned Leave, Medical Leave, or Compensatory Holiday."],
+        ["Can half-day Casual Leave be availed on half-working days?","No."]]],
+      ["Special Casual Leave (SCL)",[
+        ["When is Special Casual Leave granted?","For seminars, workshops, conferences, paper presentations, university duties, and approved academic activities."],
+        ["Is proof required after availing Special Casual Leave?","Yes. Attendance certificates and event reports must be submitted."],
+        ["Can Special Casual Leave be combined with other leaves?","Yes, subject to the policy conditions."]]],
+      ["Earned Leave (EL)",[
+        ["Who is eligible for Earned Leave?","Eligible employees as per the institutional leave policy."],
+        ["Can Earned Leave be accumulated?","Yes. Earned Leave can be accumulated and carried forward."],
+        ["What is the minimum duration for availing Earned Leave?","Three days."],
+        ["Can Earned Leave be encashed?","Yes. Encashment of at least 30 days is allowed once in three years, subject to eligibility conditions."]]],
+      ["Medical Leave (ML)",[
+        ["Is a medical certificate mandatory?","Yes. A valid medical certificate must be submitted for Medical Leave."],
+        ["Can Medical Leave be combined with other leave types?","Yes, as permitted under the leave rules."],
+        ["What happens if an employee does not produce a medical certificate?","The leave may not be treated as Medical Leave and may be adjusted against other eligible leave."]]],
+      ["Half Pay Leave (HPL)",[
+        ["What is Half Pay Leave?","It is leave during which the employee receives half of the eligible salary."],
+        ["Can Half Pay Leave be carried forward?","No."],
+        ["Can Half Pay Leave be combined with other leave types?","Yes, except Special Casual Leave."]]],
+      ["Sabbatical Leave",[
+        ["Who is eligible for Sabbatical Leave?","Eligible faculty members who satisfy the prescribed conditions and obtain management approval."],
+        ["What is the purpose of Sabbatical Leave?","To pursue higher studies, Ph.D., research projects, or professional development."],
+        ["Is a bond required for Sabbatical Leave?","Yes. Employees are required to execute a bond as prescribed by the institution."]]],
+      ["Maternity Leave",[
+        ["Who is eligible for Maternity Leave?","Confirmed female employees who have completed one year after probation."],
+        ["How many days of Maternity Leave are available?","90 days."],
+        ["What salary is payable during Maternity Leave?","Leave salary equal to 65% of the last drawn Gross Pay, subject to statutory deductions."]]],
+      ["Extraordinary Leave (Leave Without Pay)",[
+        ["Who can apply for Extraordinary Leave?","Confirmed employees who have completed the required service, subject to approval."],
+        ["Is salary paid during Extraordinary Leave?","No. It is Leave Without Pay (LWP)."]]],
+      ["Employment During Leave",[["Can an employee work elsewhere while on leave?","No. Employees cannot undertake employment, consultancy, or any professional work during leave without written permission."]]],
+      ["Contract and Part-Time Employees",[
+        ["Are contract employees eligible for all leave types?","No. They are generally entitled only to Casual Leave as specified in the policy."],
+        ["How many Casual Leaves are available to contract or part-time employees?","Ten days per calendar year (5 days from January-June and 5 days from July-December)."]]],
+      ["Policy and Compliance",[
+        ["What happens in case of unauthorized absence?","Unauthorized absence may lead to disciplinary action."],
+        ["Can the institution refuse a leave application?","Yes. Leave approval depends on institutional requirements and the sanctioning authority."],
+        ["Can the Head of Department recommend leave without arranging class substitutions?","No. The HoD must ensure that suitable arrangements are made before recommending leave."]]]
+    ];
+    const content=document.getElementById("content"),search=document.getElementById("search"),count=document.getElementById("count");
+    function render(term=""){const value=term.trim().toLowerCase();let shown=0,questionNumber=0;content.innerHTML="";sections.forEach(([title,items],sectionIndex)=>{const numberedItems=items.map(([q,a])=>[q,a,++questionNumber]);const matches=numberedItems.filter(([q,a])=>!value||(q+" "+a+" "+title).toLowerCase().includes(value));if(!matches.length)return;shown+=matches.length;const section=document.createElement("section");section.className="faq-section";section.innerHTML=`<h2 class="section-title"><span>${String(sectionIndex+1).padStart(2,"0")}</span>${title}</h2>`;matches.forEach(([q,a,number])=>{const cleanQuestion=q.replace(/^\s*\d+[.)]\s*/,"");const item=document.createElement("div");item.className="faq"+(value?" open":"");item.innerHTML=`<button class="question" type="button" aria-expanded="${value?"true":"false"}"><span class="question-copy"><span class="question-number">${number}.</span><span>${cleanQuestion}</span></span><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><div class="answer">${a}</div>`;item.querySelector("button").onclick=()=>{item.classList.toggle("open");item.querySelector("button").setAttribute("aria-expanded",item.classList.contains("open"));};section.appendChild(item);});content.appendChild(section);});count.textContent=`${shown} FAQ${shown===1?"":"s"}`;if(!shown)content.innerHTML='<div class="empty">No matching FAQs found.</div>';}
+    search.addEventListener("input",e=>render(e.target.value));render();
+  </script>
+</body>
+</html>

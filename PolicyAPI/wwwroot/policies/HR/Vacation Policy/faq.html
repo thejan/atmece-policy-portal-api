@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vacation Policy FAQs</title>
+  <style>
+    :root{--navy:#0b2858;--blue:#0b5ee8;--muted:#5b6f8d;--line:#dfe7f2;--soft:#f6f9fe;--white:#fff}
+    *{box-sizing:border-box}body{margin:0;color:var(--navy);background:#f8fbff;font-family:"Plus Jakarta Sans","Segoe UI",Arial,sans-serif}
+    .page{max-width:1180px;margin:auto;padding:24px}.hero{display:flex;align-items:center;gap:18px;padding:24px 26px;border:1px solid #d8e5f5;border-radius:15px;background:linear-gradient(120deg,#f7fbff,#edf5ff)}
+    .hero-icon{display:grid;width:58px;height:58px;flex:0 0 58px;place-items:center;border-radius:15px;color:#white;background:linear-gradient(135deg,#1768f2,#0747c9);box-shadow:0 9px 20px #0b5ee82b}
+    .hero-icon svg{width:30px;fill:none;stroke:currentColor;stroke-width:2}.hero h1{margin:0;font-size:26px}.hero p{margin:6px 0 0;color:var(--muted);line-height:1.5}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:18px 0}.search{display:flex;align-items:center;gap:10px;flex:1;max-width:540px;height:46px;padding:0 15px;border:1px solid #d4dfed;border-radius:9px;background:#fff}
+    .search svg{width:21px;fill:none;stroke:#536b8c;stroke-width:2}.search input{width:100%;border:0;outline:0;font:inherit;color:var(--navy)}.count{color:var(--muted);font-size:14px;font-weight:600}
+    .faq-section{margin:14px 0;border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden;box-shadow:0 2px 8px #24437d0a}.section-title{display:flex;align-items:center;gap:11px;margin:0;padding:16px 20px;color:#123866;font-size:17px;background:#f2f7fd;border-bottom:1px solid var(--line)}
+    .section-title span{display:grid;min-width:30px;height:28px;padding:0 7px;place-items:center;border-radius:8px;color:#white;font-size:12px;background:#0b5ee8}.faq{border-bottom:1px solid #e9eef6}.faq:last-child{border-bottom:0}
+    .question{display:flex;width:100%;align-items:center;justify-content:space-between;gap:20px;padding:16px 20px;color:var(--navy);font:inherit;font-size:15px;font-weight:500;text-align:left;cursor:pointer;border:0;background:#white}.question:hover{background:#fbfdff}.question-copy{display:flex;align-items:flex-start;gap:9px}.question-number{min-width:24px;color:#0b5ee8;font-weight:500}.question svg{width:18px;flex:0 0 18px;fill:none;stroke:#6680a1;stroke-width:2;transition:.2s}.faq.open .question svg{transform:rotate(180deg)}
+    .answer{display:none;padding:0 54px 18px 20px;color:#475d7d;font-size:14.5px;line-height:1.65}.faq.open .answer{display:block}.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed #cbd9ea;border-radius:12px;background:#white}
+    @media(max-width:650px){.page{padding:14px}.hero{align-items:flex-start;padding:19px}.hero h1{font-size:22px}.toolbar{align-items:stretch;flex-direction:column}.search{max-width:none}.question{padding:15px;font-size:14px}.answer{padding:0 42px 16px 15px}.section-title{padding:14px 15px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero"><div class="hero-icon"><svg viewBox="0 0 24 24"><path d="M5 5h14v11H8l-3 3z"/><path d="M9 9h6M9 12h4"/></svg></div><div><h1>Vacation Policy FAQs</h1><p>Frequently Asked Questions regarding the Vacation Policy.</p></div></header>
+    <div class="toolbar"><label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Search questions or answers..." aria-label="Search FAQs"></label><span class="count" id="count"></span></div>
+    <div id="content"></div>
+  </main>
+  <script>
+    const sections = [["Vacation Policy FAQs",[["Who is eligible for vacation leave?  ","Only confirmed teaching faculty. Probationary staff get 50% of the entitlement."],["How is vacation scheduled?  ","In two slots per semester, decided by the Principal through circulars."],["Can unused vacation be carried forward?  ","No, unused vacation leave cannot be carried over to the next academic year."],["What happens if a faculty member is prevented from taking vacation?  ","It may be converted into Earned Leave at the rate of 1 day EL for every 2 days of vacation not availed, at the Principal’s discretion."],["When does a faculty member become eligible for vacation? ","After completing one full academic year of continuous service."]]]];
+    const content=document.getElementById("content"),search=document.getElementById("search"),count=document.getElementById("count");
+    function render(term=""){const value=term.trim().toLowerCase();let shown=0,questionNumber=0;content.innerHTML="";sections.forEach(([title,items],sectionIndex)=>{const numberedItems=items.map(([q,a])=>[q,a,++questionNumber]);const matches=numberedItems.filter(([q,a])=>!value||(q+" "+a+" "+title).toLowerCase().includes(value));if(!matches.length)return;shown+=matches.length;const section=document.createElement("section");section.className="faq-section";section.innerHTML=`<h2 class="section-title"><span>${String(sectionIndex+1).padStart(2,"0")}</span>${title}</h2>`;matches.forEach(([q,a,number])=>{const cleanQuestion=q.replace(/^\s*\d+[.)]\s*/,"");const item=document.createElement("div");item.className="faq"+(value?" open":"");item.innerHTML=`<button class="question" type="button" aria-expanded="${value?"true":"false"}"><span class="question-copy"><span class="question-number">${number}.</span><span>${cleanQuestion}</span></span><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><div class="answer">${a}</div>`;item.querySelector("button").onclick=()=>{item.classList.toggle("open");item.querySelector("button").setAttribute("aria-expanded",item.classList.contains("open"));};section.appendChild(item);});content.appendChild(section);});count.textContent=`${shown} FAQ${shown===1?"":"s"}`;if(!shown)content.innerHTML='<div class="empty">No matching FAQs found.</div>';}
+    search.addEventListener("input",e=>render(e.target.value));render();
+  </script>
+</body>
+</html>

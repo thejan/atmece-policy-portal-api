@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PolicyAPI/PolicyAPI.csproj" />
+  <Project Path="PolicyConsole/PolicyConsole.csproj" />
+  <Project Path="PolicyEFCore/PolicyEFCore.csproj" />
+</Solution>
